@@ -48,7 +48,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <ShopNavigator />
+      <ShopNavigator style = {{ marginTop: "8%"}}/>
     </Provider>
   );
 }
