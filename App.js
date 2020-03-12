@@ -1,4 +1,4 @@
-import React , { useState }from 'react';
+import React, { useState } from 'react';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -11,35 +11,29 @@ import * as Font from 'expo-font';
 import cartReducer from './store/reducers/cart';
 import OrdersReducer from './store/reducers/orders';
 
-
 const rootReducer = combineReducers({
   products: productsReducer,
   cart: cartReducer,
-  orders: OrdersReducer
-
+  orders: OrdersReducer,
 });
 
-const store = createStore(
-  rootReducer,
-  composeWithDevTools()
-  );
+const store = createStore(rootReducer, composeWithDevTools());
 
 const fetchFonts = () => {
   return Font.loadAsync({
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
-    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
-  
-  })
-}
+    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+  });
+};
 
 export default function App() {
   const [fontLoaded, setFontLoaded] = useState(false);
-  
-  if(!fontLoaded) {
+
+  if (!fontLoaded) {
     return (
-      <AppLoading 
-        startAsync = {fetchFonts}
-        onFinish = {() => {
+      <AppLoading
+        startAsync={fetchFonts}
+        onFinish={() => {
           setFontLoaded(true);
         }}
       />
@@ -48,7 +42,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <ShopNavigator style = {{ marginTop: "8%"}}/>
+      <ShopNavigator style={{ marginTop: '8%' }} />
     </Provider>
   );
 }

@@ -15,89 +15,89 @@ import { Ionicons } from '@expo/vector-icons';
 import OrderScreen from '../screens/shop/OrdersScreen';
 import UserProudctsScreen from '../screens/user/UserProductsScreen';
 
-// Admin 
+// Admin
 import EditProductScreen from '../screens/user/EditProdutScreen';
-
 
 const defaultNavOptions = {
   headerStyle: {
-    backgroundColor: Platform.OS === 'android' ? Colors.primary : ''
-    },
-    headerTitleStyle: {
-    fontFamily: 'open-sans-bold'
-    },
-    headerBackTitleStyle: {
-    fontFamily: 'open-sans-bold'
-    },
-    headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primary
+    backgroundColor: Platform.OS === 'android' ? Colors.primary : '',
+  },
+  headerTitleStyle: {
+    fontFamily: 'open-sans-bold',
+  },
+  headerBackTitleStyle: {
+    fontFamily: 'open-sans-bold',
+  },
+  headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primary,
 };
 
-
 const ProductsNavigator = createStackNavigator(
-    {
-      ProductsOverview: ProductsOverviewScreen,
-      ProductDetail: ProductDetailScreen,
-      Cart: CartScreen
-    },
-    {
-      navigationOptions: {
-        drawerIcon: drawerConfig => <Ionicons name = { Platform.OS === 'android' ? 'md-cart' : 'ios-cart'}
-        size= {23}
-        color = {drawerConfig.activeTintColor}
-        />
-      },
-
-      defaultNavigationOptions: defaultNavOptions
-    }
-  );
-
-
-const AdminNavigator = createStackNavigator(
   {
-  UserProducs: UserProudctsScreen,
-  EditProduct: EditProductScreen
+    ProductsOverview: ProductsOverviewScreen,
+    ProductDetail: ProductDetailScreen,
+    Cart: CartScreen,
   },
   {
     navigationOptions: {
-      drawerIcon: drawerConfig => <Ionicons
-       name = {Platform.OS === 'android' ? 'md-list' : 'ios-list'}
-       size = {23}
-       color = {drawerConfig.activeTintColor}
-      />
+      drawerIcon: drawerConfig => (
+        <Ionicons
+          name={Platform.OS === 'android' ? 'md-cart' : 'ios-cart'}
+          size={23}
+          color={drawerConfig.activeTintColor}
+        />
+      ),
     },
-    defaultNavigationOptions: defaultNavOptions
+
+    defaultNavigationOptions: defaultNavOptions,
+  }
+);
+
+const AdminNavigator = createStackNavigator(
+  {
+    UserProducs: UserProudctsScreen,
+    EditProduct: EditProductScreen,
+  },
+  {
+    navigationOptions: {
+      drawerIcon: drawerConfig => (
+        <Ionicons
+          name={Platform.OS === 'android' ? 'md-list' : 'ios-list'}
+          size={23}
+          color={drawerConfig.activeTintColor}
+        />
+      ),
+    },
+    defaultNavigationOptions: defaultNavOptions,
   }
 );
 
 const OrdersNavigator = createStackNavigator(
   {
-  Orders: OrderScreen,
+    Orders: OrderScreen,
   },
   {
     navigationOptions: {
-      drawerIcon: drawerConfig => <Ionicons
-       name = {Platform.OS === 'android' ? 'md-create' : 'ios-create'}
-       size = {23}
-       color = {drawerConfig.activeTintColor}
-      />
+      drawerIcon: drawerConfig => (
+        <Ionicons
+          name={Platform.OS === 'android' ? 'md-create' : 'ios-create'}
+          size={23}
+          color={drawerConfig.activeTintColor}
+        />
+      ),
     },
-    defaultNavigationOptions: defaultNavOptions
+    defaultNavigationOptions: defaultNavOptions,
   }
 );
 
-
-
 const ShopNavigator = createDrawerNavigator(
-  {Products: ProductsNavigator,
-  Orders: OrdersNavigator,
-  Admin: AdminNavigator
-}, 
-{
-  contentOption: {
-
+  {
+    Products: ProductsNavigator,
+    Orders: OrdersNavigator,
+    Admin: AdminNavigator,
+  },
+  {
+    contentOption: {},
   }
-}
-  )
-  
-  
-  export default createAppContainer(ShopNavigator);
+);
+
+export default createAppContainer(ShopNavigator);
