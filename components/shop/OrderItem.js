@@ -38,11 +38,10 @@ const OrderItem = props => {
 };
 
 const styles = StyleSheet.create({
-  product: {
-    height: 300,
+  orderItem: {
     margin: 20,
     padding: 10,
-    alignItems: 'center',
+    alignItems: 'center'
   },
   summary: {
     flexDirection: 'row',

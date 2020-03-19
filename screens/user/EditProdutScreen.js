@@ -72,6 +72,7 @@ const EditProductScreen = props => {
       Alert.alert('An error occurred!', error, [{ text: 'Okay' }]);
     }
   }, [error]);
+  
 
   const submitHandler = useCallback(async () => {
     if (!formState.formIsValid) {

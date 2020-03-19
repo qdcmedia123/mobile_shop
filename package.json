@@ -34,7 +34,8 @@
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
-    "watchman": "^1.0.0"
+    "watchman": "^1.0.0",
+    "expo-linear-gradient": "~8.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

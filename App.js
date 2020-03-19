@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
@@ -18,8 +18,10 @@ const rootReducer = combineReducers({
   orders: OrdersReducer,
 });
 
+const middleware = [ReduxThunk];
+
 //const store = createStore(rootReducer, composeWithDevTools());
-const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(...middleware)));
 const fetchFonts = () => {
   return Font.loadAsync({
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
