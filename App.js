@@ -10,12 +10,15 @@ import * as Font from 'expo-font';
 
 import cartReducer from './store/reducers/cart';
 import OrdersReducer from './store/reducers/orders';
+import authReducer from './store/reducers/auth';
 import ReduxThunk from 'redux-thunk';
+
 
 const rootReducer = combineReducers({
   products: productsReducer,
   cart: cartReducer,
   orders: OrdersReducer,
+  auth: authReducer
 });
 
 const middleware = [ReduxThunk];

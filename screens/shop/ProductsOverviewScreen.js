@@ -53,8 +53,10 @@ const ProductsOverviewScreen = props => {
   }, [loadProducts])
 
   useEffect(() => {
-   
-    loadProducts()
+   setIsLoading(true);
+    loadProducts().then(() => {
+      setIsLoading(false);
+    })
   }, [dispatch, loadProducts])
 
   if(error){
