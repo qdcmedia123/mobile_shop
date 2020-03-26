@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import productsReducer from './store/reducers/products';
-import ShopNavigator from './navigation/ShopNavigator';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 
@@ -13,6 +12,7 @@ import OrdersReducer from './store/reducers/orders';
 import authReducer from './store/reducers/auth';
 import ReduxThunk from 'redux-thunk';
 
+import NavigationContainer from './navigation/NavigationContainer';
 
 const rootReducer = combineReducers({
   products: productsReducer,
@@ -48,7 +48,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <ShopNavigator style={{ marginTop: '8%' }} />
+      <NavigationContainer />
     </Provider>
   );
 }

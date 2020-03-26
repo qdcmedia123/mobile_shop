@@ -82,7 +82,9 @@ const ProductsOverviewScreen = props => {
     onRefresh={loadProducts}
     refreshing={isLoading}
       data={products}
-      keyExtractor={item => item.id}
+      keyExtractor={(item, index) => {
+            return item.id
+      }}
       renderItem={itemData => (
         <ProductItem
           image={itemData.item.imageUrl}
@@ -118,7 +120,7 @@ const ProductsOverviewScreen = props => {
 ProductsOverviewScreen.navigationOptions = navData => {
   return {
     headerTitle: 'All Products',
-    headerLeft: (
+    headerLeft: () =>
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
           title="Menu"
@@ -128,9 +130,9 @@ ProductsOverviewScreen.navigationOptions = navData => {
           }}
         />
       </HeaderButtons>
-    ),
+    ,
 
-    headerRight: (
+    headerRight: () =>
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
           title="Cart"
@@ -140,7 +142,6 @@ ProductsOverviewScreen.navigationOptions = navData => {
           }}
         />
       </HeaderButtons>
-    ),
   };
 };
 

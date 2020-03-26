@@ -3,8 +3,9 @@ import {
           createAppContainer,
           createSwitchNavigator
         } from 'react-navigation';
+import {useDispatch} from 'react-redux';
 import { createStackNavigator } from 'react-navigation-stack';
-import { Platform, Text } from 'react-native';
+import { Platform, Text, View, SafeAreaView, Button } from 'react-native';
 import Colors from '../constants/Colors';
 import ProductsOverviewScreen from '../screens/shop/ProductsOverviewScreen';
 import ProductDetailScreen from '../screens/shop/ProductDetailScreen';
@@ -12,7 +13,7 @@ import CartScreen from '../screens/shop/CartScreen';
 
 import OrdersScreen from '../screens/shop/OrdersScreen';
 
-import { createDrawerNavigator } from 'react-navigation-drawer';
+import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
 
 import { Ionicons } from '@expo/vector-icons';
 import OrderScreen from '../screens/shop/OrdersScreen';
@@ -20,6 +21,10 @@ import UserProudctsScreen from '../screens/user/UserProductsScreen';
 import AuthScreen from '../screens/user/AuthScreen';
 // Admin
 import EditProductScreen from '../screens/user/EditProdutScreen';
+import StartupScreen from '../screens/StartupScreen';
+import * as authActions from '../store/actions/auth';
+
+
 
 const defaultNavOptions = {
   headerStyle: {
@@ -101,7 +106,26 @@ const ShopNavigator = createDrawerNavigator(
     Admin: AdminNavigator,
   },
   {
-    contentOption: {},
+    contentOption: {
+      activeTintColor: Colors.primary
+    },
+    contentComponent: props => {
+      const dispatch = useDispatch();
+      return <View>
+        <SafeAreaView forceInset = {{top: 'always', 'horizontal': 'never'}} >
+          <DrawerItems {...props} />
+          <Button 
+                  title = "Logout" 
+                  color={Colors.primary}
+                  onPress = {() => {
+                    dispatch(authActions.logout());
+                    //props.navigation.navigate('Auth');
+                  }}              
+                />
+        </SafeAreaView>
+      </View>
+    }
+   
   }
 );
 
@@ -110,6 +134,7 @@ const AuthNavigator = createStackNavigator({
 });
 
 const MainNavigator = createSwitchNavigator({
+  Startup: StartupScreen,
   Auth: AuthNavigator,
   Shop: ShopNavigator
 })

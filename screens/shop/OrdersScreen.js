@@ -21,14 +21,24 @@ const OrderScreen = props => {
   }, [dispatch]);
   
   if(isLoading) {
-    return <View style = {style.centered}>
+    return <View style = {styles.centered}>
        <ActivityIndicator size = 'small'></ActivityIndicator>
     </View>
   }
+
+  if(orders.length === 0) {
+    return <View style = {styles.centered}>
+      <Text> No order found. Start adding something.</Text>
+    </View>
+  }
+
+
   return (
     <FlatList
       data={orders}
-      keyExtractor={item => item.id}
+      keyExtractor={(item, index) => {
+        return item.id
+  }}
       renderItem={itemData => (
         <OrderItem
           amount={itemData.item.totalAmount}
@@ -68,7 +78,7 @@ OrderScreen.navigationOptions = navData => {
   };
 };
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   centered: {
     flex:1,
     justifyContent: 'center',
